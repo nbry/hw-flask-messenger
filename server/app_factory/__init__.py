@@ -8,6 +8,10 @@ from api.ping_handler import ping_handler
 from app_factory.flask_extensions import db
 
 
+# Models - Keep this here for now. Will use this for authentication library
+# from models.user import User
+
+
 # *****************************
 # APPLICATION FACTORY
 # *****************************
@@ -33,7 +37,7 @@ def create_app(config_file=None):
 # INITIALIZING EXTENSIONS
 # *****************************
 
-def initialize_extensions(app, user_model=User):
+def initialize_extensions(app):
     """
     Pass Flask extensions to an instantiated Flask app.
     """
