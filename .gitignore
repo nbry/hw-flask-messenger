@@ -21,7 +21,7 @@ yarn-error.log*
 __pycache__/
 .webassets-cache
 server/venv/
-
+server/secret.py
 # This was originally here, but I'm utilizing instance directory now:
 # instance/
 
