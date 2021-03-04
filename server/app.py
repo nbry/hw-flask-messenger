@@ -1,11 +1,5 @@
-from flask import Flask
-from api.ping_handler import ping_handler
-from api.home_handler import home_handler
+import os
+from app_factory import create_app
 
-
-app = Flask(__name__)
-
-
-app.register_blueprint(home_handler)
-app.register_blueprint(ping_handler)
-
+config_settings = os.environ.get("APP_CONFIG_SETTINGS", "development.cfg")
+app = create_app(config_settings)
