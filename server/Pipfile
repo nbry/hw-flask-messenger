@@ -9,6 +9,8 @@ verify_ssl = true
 flask = "*"
 flask-sqlalchemy = "*"
 python-dotenv = "*"
+ipython = "*"
+psycopg2-binary = "*"
 
 [requires]
 python_version = "3.7"
