@@ -79,9 +79,9 @@
 
 	You can run flask in different environments. Refer to Flask docs for more info
 
-	You should see the server running on localhost:5000. You can now utilize forleti REST API. Try the following in your browser:
+	You should see the server running on localhost:5000. You can now utilize the REST API. Try the following in your browser:
 
-	`localhost:5000/poke`
+	`localhost:5000/welcome`
 	You should receive the JSON message:
 
-	`{"Poke you back!"}`
+	`{"welcomeMessage": "Welcome!"}`
