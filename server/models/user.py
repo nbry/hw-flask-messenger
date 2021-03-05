@@ -7,10 +7,24 @@ class User(db.Model):
     __tablename__ = "users"
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    email = db.Column(db.Text, nullable=False, unique=True)
     username = db.Column(db.String(15), nullable=False, unique=True)
     hashed_password = db.Column(db.Text, nullable=False)
     roles = db.Column(db.Text)
     created = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+
+    # *****************************
+    # API-related methods:
+    # *****************************
+    @classmethod
+    def check_for_duplicate_account(cls, username: str, email: str):
+        """
+        To be used when a user is trying to sign up. Make sure no username exists
+        with requested username or email.
+        """
+        check_username = cls.lookup(username) if username else False
+        check_email = cls.lookup_by_email(email) if email else False
+        return check_username or check_email
 
     # *****************************
     # REQUIRED PROPERTIES AND METHODS BY FLASK PRAETORIAN:
