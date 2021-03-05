@@ -4,9 +4,8 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
 import Paper from "@material-ui/core/Paper";
 import Box from "@material-ui/core/Box";
-import Hidden from "@material-ui/core/Hidden";
 import Snackbar from "@material-ui/core/Snackbar";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
@@ -14,6 +13,8 @@ import { Formik } from "formik";
 import * as Yup from "yup";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
+
+import AuthHeader from "../components/AuthScreen/AuthHeader";
 import SideBar from "../components/AuthScreen/SideBar";
 
 const useStyles = makeStyles((theme) => ({
@@ -159,19 +160,7 @@ export default function Login() {
       <SideBar classes={classes} />
       <Grid item xs={12} sm={8} md={7} elevation={6} component={Paper} square>
         <Box className={classes.buttonHeader}>
-          <Box p={1} alignSelf="flex-end" alignItems="center">
-            <Link to="/signup" className={classes.link}>
-              <Button className={classes.noAccBtn}>
-                Don't have an account?
-              </Button>
-              <Button
-                color="background"
-                className={classes.accBtn}
-                variant="contained">
-                Create account
-              </Button>
-            </Link>
-          </Box>
+          <AuthHeader classes={classes} />
 
           <Box width="100%" maxWidth={450} p={3} alignSelf="center">
             <Grid container>
