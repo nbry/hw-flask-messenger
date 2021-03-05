@@ -3,6 +3,7 @@ from flask import Flask
 # Blueprints
 from api.home_handler import home_handler
 from api.ping_handler import ping_handler
+from api.user_auth import user_auth_api
 
 # Extensions
 from app_factory.flask_extensions import db, guard
@@ -55,3 +56,4 @@ def register_blueprints(app):
     """
     app.register_blueprint(home_handler)
     app.register_blueprint(ping_handler)
+    app.register_blueprint(user_auth_api)
