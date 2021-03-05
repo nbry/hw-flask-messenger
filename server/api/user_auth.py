@@ -1,4 +1,5 @@
-import flask_praetorian as fp
+# NEEDS ATTENTION IN THE FUTURE: IMPLEMENT A MORE RIGOROUS CHECK FOR EMAIL VERIFICATION UPON REGISTRATION:
+
 from flask import jsonify, Blueprint, request
 from app_factory.flask_extensions import guard
 from models.user import User
@@ -48,10 +49,12 @@ def register_for_account():
     email = req.get("email", None)
 
     # Check if password in request is less than 6 characters
-    if len(password) < 6 or len(username) < 6 or len(username) > 15:
+    # NEEDS ATTENTION IN THE FUTURE: IMPLEMENT A MORE RIGOROUS CHECKING FOR EMAIL VERIFICATION:
+    if len(password) < 6 or len(username) < 6 or len(username) > 15 or not email:
         return jsonify({"message": "INVALID USERNAME/PASSWORD",
                         "username_constraints": "Username must be unique and between 5 and 15 characters",
-                        "password_constraints": "Password must be 8 to 50 characters in length"}
+                        "password_constraints": "Password must be 8 to 50 characters in length",
+                        "email_constraints": "A valid email address is required"},
                        ), 400
 
     # Check to see if there is an existing user
