@@ -14,26 +14,27 @@ import { Formik } from "formik";
 import * as Yup from "yup";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
+import SideBar from "../components/AuthScreen/SideBar";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     minHeight: "100vh",
     "& .MuiInput-underline:before": {
-      borderBottom: "1.2px solid rgba(0, 0, 0, 0.2)"
-    }
+      borderBottom: "1.2px solid rgba(0, 0, 0, 0.2)",
+    },
   },
   welcome: {
     fontSize: 26,
     paddingBottom: 20,
     color: "#000000",
-    fontWeight: 500
+    fontWeight: 500,
   },
   heroText: {
     fontSize: 26,
     textAlign: "center",
     color: "white",
     marginTop: 30,
-    maxWidth: 300
+    maxWidth: 300,
   },
   overlay: {
     backgroundImage:
@@ -45,7 +46,7 @@ const useStyles = makeStyles(theme => ({
     paddingBottom: 145,
     display: "flex",
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
   },
   buttonHeader: {
     display: "flex",
@@ -54,7 +55,7 @@ const useStyles = makeStyles(theme => ({
     flexDirection: "column",
     bgcolor: "background.paper",
     minHeight: "100vh",
-    paddingTop: 23
+    paddingTop: 23,
   },
   accBtn: {
     width: 170,
@@ -64,7 +65,7 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: "#ffffff",
     color: "#3a8dff",
     boxShadow: "none",
-    marginRight: 35
+    marginRight: 35,
   },
   noAccBtn: {
     fontSize: 14,
@@ -72,13 +73,13 @@ const useStyles = makeStyles(theme => ({
     fontWeight: 400,
     textAlign: "center",
     marginRight: 21,
-    whiteSpace: "nowrap"
+    whiteSpace: "nowrap",
   },
   image: {
     backgroundImage: "url(./images/bg-img.png)",
     backgroundRepeat: "no-repeat",
     backgroundSize: "cover",
-    backgroundPosition: "center"
+    backgroundPosition: "center",
   },
   box: {
     padding: 24,
@@ -88,11 +89,11 @@ const useStyles = makeStyles(theme => ({
     minHeight: "100vh",
     flexDirection: "column",
     maxWidth: 900,
-    margin: "auto"
+    margin: "auto",
   },
   form: {
     width: "100%", // Fix IE 11 issue.
-    marginTop: theme.spacing(1)
+    marginTop: theme.spacing(1),
   },
   label: { fontSize: 19, color: "rgb(0,0,0,0.4)", paddingLeft: "5px" },
   submit: {
@@ -104,18 +105,18 @@ const useStyles = makeStyles(theme => ({
     marginTop: 49,
     fontSize: 16,
     fontWeight: "bold",
-    backgroundColor: "#3a8dff"
+    backgroundColor: "#3a8dff",
   },
   inputs: {
     marginTop: ".8rem",
     height: "2rem",
-    padding: "5px"
+    padding: "5px",
   },
   link: { textDecoration: "none", display: "flex", flexWrap: "nowrap" },
   forgot: {
     paddingRight: 10,
-    color: "#3a8dff"
-  }
+    color: "#3a8dff",
+  },
 }));
 
 // Login middleware placeholder
@@ -126,7 +127,7 @@ function useLogin() {
     console.log(email, password);
     const res = await fetch(
       `/auth/login?email=${email}&password=${password}`
-    ).then(res => res.json());
+    ).then((res) => res.json());
     localStorage.setItem("user", res.user);
     localStorage.setItem("token", res.token);
     history.push("/dashboard");
@@ -155,18 +156,7 @@ export default function Login() {
   return (
     <Grid container component="main" className={classes.root}>
       <CssBaseline />
-      <Grid item xs={false} sm={4} md={5} className={classes.image}>
-        <Box className={classes.overlay}>
-          <Hidden xsDown>
-            <img width={67} src="/images/chatBubble.png" />
-            <Hidden smDown>
-              <p className={classes.heroText}>
-                Converse with anyone with any language
-              </p>
-            </Hidden>
-          </Hidden>
-        </Box>
-      </Grid>
+      <SideBar classes={classes} />
       <Grid item xs={12} sm={8} md={7} elevation={6} component={Paper} square>
         <Box className={classes.buttonHeader}>
           <Box p={1} alignSelf="flex-end" alignItems="center">
@@ -177,8 +167,7 @@ export default function Login() {
               <Button
                 color="background"
                 className={classes.accBtn}
-                variant="contained"
-              >
+                variant="contained">
                 Create account
               </Button>
             </Link>
@@ -195,7 +184,7 @@ export default function Login() {
             <Formik
               initialValues={{
                 email: "",
-                password: ""
+                password: "",
               }}
               validationSchema={Yup.object().shape({
                 email: Yup.string()
@@ -204,7 +193,7 @@ export default function Login() {
                 password: Yup.string()
                   .required("Password is required")
                   .max(100, "Password is too long")
-                  .min(6, "Password too short")
+                  .min(6, "Password too short"),
               })}
               onSubmit={({ email, password }, { setStatus, setSubmitting }) => {
                 setStatus();
@@ -214,26 +203,24 @@ export default function Login() {
                     console.log(email, password);
                     return;
                   },
-                  error => {
+                  (error) => {
                     setSubmitting(false);
                     setStatus(error);
                   }
                 );
-              }}
-            >
+              }}>
               {({ handleSubmit, handleChange, values, touched, errors }) => (
                 <form
                   onSubmit={handleSubmit}
                   className={classes.form}
-                  noValidate
-                >
+                  noValidate>
                   <TextField
                     id="email"
                     label={<p className={classes.label}>E-mail address</p>}
                     fullWidth
                     margin="normal"
                     InputLabelProps={{
-                      shrink: true
+                      shrink: true,
                     }}
                     InputProps={{ classes: { input: classes.inputs } }}
                     name="email"
@@ -254,7 +241,7 @@ export default function Login() {
                     fullWidth
                     margin="normal"
                     InputLabelProps={{
-                      shrink: true
+                      shrink: true,
                     }}
                     InputProps={{
                       classes: { input: classes.inputs },
@@ -262,7 +249,7 @@ export default function Login() {
                         <Typography className={classes.forgot}>
                           Forgot?
                         </Typography>
-                      )
+                      ),
                     }}
                     type="password"
                     autoComplete="current-password"
@@ -279,8 +266,7 @@ export default function Login() {
                       size="large"
                       variant="contained"
                       color="primary"
-                      className={classes.submit}
-                    >
+                      className={classes.submit}>
                       Login
                     </Button>
                   </Box>
@@ -295,7 +281,7 @@ export default function Login() {
         <Snackbar
           anchorOrigin={{
             vertical: "bottom",
-            horizontal: "center"
+            horizontal: "center",
           }}
           open={open}
           autoHideDuration={6000}
@@ -307,8 +293,7 @@ export default function Login() {
                 size="small"
                 aria-label="close"
                 color="inherit"
-                onClick={handleClose}
-              >
+                onClick={handleClose}>
                 <CloseIcon fontSize="small" />
               </IconButton>
             </React.Fragment>
