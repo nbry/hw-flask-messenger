@@ -5,7 +5,7 @@ from api.home_handler import home_handler
 from api.ping_handler import ping_handler
 
 # Extensions
-from app_factory.flask_extensions import db
+from app_factory.flask_extensions import db, guard
 
 # Models - KEEP THIS IMPORT HERE. App needs it for context
 from models.user import User
@@ -36,12 +36,13 @@ def create_app(config_file=None):
 # INITIALIZING EXTENSIONS
 # *****************************
 
-def initialize_extensions(app):
+def initialize_extensions(app, user_model=User):
     """
     Pass Flask extensions to an instantiated Flask app.
     """
 
     db.init_app(app)
+    guard.init_app(app, user_model)
 
 
 # *****************************
