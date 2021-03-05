@@ -3,6 +3,15 @@
 
 1. **Clone the repository**
 
+	However, ensure you create a file in the root directory called `secret.py`
+
+	In `secret.py`, simply create a variable called `secret_key` and assign a secure
+	key to be used in development.
+
+	For example:
+
+	`secret_key = "ThisIsProbablyNotASafeKeyButIWillUseItAsAnExample`
+
 2. **Create a virtual environment and install dependencies with `pipenv`**
 
 	If you don't have pipenv:
