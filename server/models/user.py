@@ -1,6 +1,7 @@
 from datetime import datetime
+from sqlalchemy.exc import IntegrityError
 
-from app_factory.flask_extensions import db
+from app_factory.flask_extensions import db, guard
 
 
 class User(db.Model):
@@ -26,6 +27,27 @@ class User(db.Model):
         check_username = cls.lookup(username) if username else False
         check_email = cls.lookup_by_email(email) if email else False
         return check_username or check_email
+
+    @classmethod
+    def register(cls, username: str, raw_pass: str, email: str):
+        """
+        Register user for an account w/hashed password.
+        Ensure unique username and email.
+        Return user.
+        """
+        hashed_pass = guard.hash_password(raw_pass)
+        new_user = cls(username=username,
+                       hashed_password=hashed_pass,
+                       email=email)
+
+        db.session.add(new_user)
+
+        try:
+            db.session.commit()
+            return new_user
+        except IntegrityError:
+            db.session.rollback()
+            return None
 
     # *****************************
     # REQUIRED PROPERTIES AND METHODS BY FLASK PRAETORIAN:
