@@ -74,7 +74,7 @@ def register_for_account():
             "message": f"Successfully created account for {new_user.username}",
             "token": guard.encode_jwt_token(new_user)
         }
-        return jsonify(message)
+        return jsonify(message), 201
 
     else:
         message = {"message": "Something went wrong"}
