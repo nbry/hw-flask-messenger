@@ -3,38 +3,17 @@
 
 1. **Clone the repository**
 
-2. **Create a virtual environment with the name "venv**"
+2. **Create a virtual environment and install dependencies with `pipenv`**
 
-	`python -m venv venv`
+	If you don't have pipenv:
 
-	If this is your first time encountering the venv module or virtual environments, I highly recommend reading the Python docs or 	learning about them first.
+	`pip install pipenv`
 
-4. **Activate the virtual environment:**
+	Then:
 
-	`source venv/bin/activate`
+	`pipenv install `
 
-	A different command may be required for windows users.
-	Could possibly be:
-	
-	`source venv/Scripts/activate`
-
-5. **Ensure your virtual environment is activated.**
-	If you followed the previous instructions, you might see `(venv)` in your CLI.
-
-6. **Install dependencies from the requirements.txt file**
-
-	`pip install -r requirements.txt`
-
-	You can verify installation by using the command
-
-	`pip freeze`
-
-	You should see a list of dependencies that matches the requirements.txt file.
-	For quick visual comparison:
-
-	`cat requirements.txt`
-
-7. **Open PostgreSQL interactive terminal.**
+3. **Open PostgreSQL interactive terminal.**
 	The command may differ depending on your system settings.
 	Refer to PostgreSQL docs if you run into issues.
 
@@ -52,7 +31,7 @@
 
 	Once you have PostgreSQL open... 
 
-8. **Create the database:**
+4. **Create the database:**
 
 	`CREATE DATABASE hw_messenger_db;`
 
@@ -60,22 +39,20 @@
 
 	`CREATE DATABASE hw_messenger_db_test;`
 
-9. **Exit PostgreSQL**
+5. **Exit PostgreSQL**
 
-10. **Seed the tables in the database.**
+6. **Seed the tables in the database.**
 
-	`python seed.py`
-
-	...or if in ipython:
+	`pipenv run ipython`
 
 	`%run seed.py`
 
 
-11. **Run flask server.** Your virtual environment should still be activated. If not, repeat step 4.
+7. **Run flask server.** Your virtual environment should still be activated. If not, repeat step 4.
 
 	Run the following command in your Terminal:
 
-	`flask run`
+	`pipenv run flask run`
 
 	You can run flask in different environments. Refer to Flask docs for more info
 
