@@ -7,7 +7,6 @@
 
 	`python -m venv venv`
 
-3. **Create a virtual environment.** 
 	If this is your first time encountering the venv module or virtual environments, I highly recommend reading the Python docs or 	learning about them first.
 
 4. **Activate the virtual environment:**
