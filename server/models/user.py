@@ -19,8 +19,9 @@ class User(db.Model):
     @classmethod
     def check_for_duplicate_account(cls, username: str, email: str):
         """
-        To be used when a user is trying to sign up. Make sure no username exists
-        with requested username or email.
+        To be used when a user is trying to sign up.
+        Ensure no duplicate account exists (i.e. account with email OR username
+        that user is requesting to register with).
         """
         check_username = cls.lookup(username) if username else False
         check_email = cls.lookup_by_email(email) if email else False
