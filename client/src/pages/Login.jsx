@@ -1,7 +1,5 @@
 import React from "react";
-import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import TextField from "@material-ui/core/TextField";
 import Paper from "@material-ui/core/Paper";
 import Box from "@material-ui/core/Box";
 import Snackbar from "@material-ui/core/Snackbar";
@@ -9,12 +7,10 @@ import { useHistory } from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
-import { Formik } from "formik";
-import * as Yup from "yup";
-import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 
 import AuthHeader from "../components/AuthScreen/AuthHeader";
+import AuthForm from "../components/AuthScreen/AuthForm";
 import SideBar from "../components/AuthScreen/SideBar";
 
 const useStyles = makeStyles((theme) => ({
@@ -162,109 +158,7 @@ export default function Login() {
         <Box className={classes.buttonHeader}>
           <AuthHeader classes={classes} />
 
-          <Box width="100%" maxWidth={450} p={3} alignSelf="center">
-            <Grid container>
-              <Grid item xs>
-                <p className={classes.welcome} component="h1" variant="h5">
-                  Welcome back!
-                </p>
-              </Grid>
-            </Grid>
-            <Formik
-              initialValues={{
-                email: "",
-                password: "",
-              }}
-              validationSchema={Yup.object().shape({
-                email: Yup.string()
-                  .required("Email is required")
-                  .email("Email is not valid"),
-                password: Yup.string()
-                  .required("Password is required")
-                  .max(100, "Password is too long")
-                  .min(6, "Password too short"),
-              })}
-              onSubmit={({ email, password }, { setStatus, setSubmitting }) => {
-                setStatus();
-                login(email, password).then(
-                  () => {
-                    // useHistory push to chat
-                    console.log(email, password);
-                    return;
-                  },
-                  (error) => {
-                    setSubmitting(false);
-                    setStatus(error);
-                  }
-                );
-              }}>
-              {({ handleSubmit, handleChange, values, touched, errors }) => (
-                <form
-                  onSubmit={handleSubmit}
-                  className={classes.form}
-                  noValidate>
-                  <TextField
-                    id="email"
-                    label={<p className={classes.label}>E-mail address</p>}
-                    fullWidth
-                    margin="normal"
-                    InputLabelProps={{
-                      shrink: true,
-                    }}
-                    InputProps={{ classes: { input: classes.inputs } }}
-                    name="email"
-                    autoComplete="email"
-                    autoFocus
-                    helperText={touched.email ? errors.email : ""}
-                    error={touched.email && Boolean(errors.email)}
-                    value={values.email}
-                    onChange={handleChange}
-                  />
-                  <TextField
-                    id="password"
-                    label={
-                      <Typography className={classes.label}>
-                        Password
-                      </Typography>
-                    }
-                    fullWidth
-                    margin="normal"
-                    InputLabelProps={{
-                      shrink: true,
-                    }}
-                    InputProps={{
-                      classes: { input: classes.inputs },
-                      endAdornment: (
-                        <Typography className={classes.forgot}>
-                          Forgot?
-                        </Typography>
-                      ),
-                    }}
-                    type="password"
-                    autoComplete="current-password"
-                    helperText={touched.password ? errors.password : ""}
-                    error={touched.password && Boolean(errors.password)}
-                    value={values.password}
-                    onChange={handleChange}
-                    type="password"
-                  />
-
-                  <Box textAlign="center">
-                    <Button
-                      type="submit"
-                      size="large"
-                      variant="contained"
-                      color="primary"
-                      className={classes.submit}>
-                      Login
-                    </Button>
-                  </Box>
-
-                  <div style={{ height: 95 }} />
-                </form>
-              )}
-            </Formik>
-          </Box>
+          <AuthForm classes={classes} login={login} />
           <Box p={1} alignSelf="center" />
         </Box>
         <Snackbar
