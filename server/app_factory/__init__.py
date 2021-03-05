@@ -7,9 +7,8 @@ from api.ping_handler import ping_handler
 # Extensions
 from app_factory.flask_extensions import db
 
-
-# Models - Keep this here for now. Will use this for authentication library
-# from models.user import User
+# Models - KEEP THIS IMPORT HERE. App needs it for context
+from models.user import User
 
 
 # *****************************
