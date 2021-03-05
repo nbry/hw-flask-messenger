@@ -54,11 +54,11 @@
 
 8. **Create the database:**
 
-	`CREATE DATABASE forleti_db;`
+	`CREATE DATABASE hw_messenger_db;`
 
 	For testing environment, create the following database:
 
-	`CREATE DATABASE forleti_db_test;`
+	`CREATE DATABASE hw_messenger_db_test;`
 
 9. **Exit PostgreSQL**
 
