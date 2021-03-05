@@ -11,8 +11,11 @@ class User(db.Model):
     email = db.Column(db.Text, nullable=False, unique=True)
     username = db.Column(db.String(15), nullable=False, unique=True)
     hashed_password = db.Column(db.Text, nullable=False)
-    roles = db.Column(db.Text)
     created = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+
+    # Roles is a required attribute for Flask Praetorian.
+    # We won't be designating account roles for this project
+    roles = db.Column(db.Text)
 
     # *****************************
     # API-related methods:
