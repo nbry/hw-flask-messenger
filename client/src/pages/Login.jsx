@@ -17,21 +17,23 @@ const useStyles = makeStyles((theme) => ({
   root: {
     minHeight: "100vh",
     "& .MuiInput-underline:before": {
-      borderBottom: "1.2px solid rgba(0, 0, 0, 0.2)",
-    },
+      borderBottom: "1.2px solid rgba(0, 0, 0, 0.2)"
+    }
   },
   welcome: {
     fontSize: 26,
     paddingBottom: 20,
     color: "#000000",
-    fontWeight: 500,
+    fontWeight: 700,
+    fontFamily: "'Open Sans'"
   },
   heroText: {
     fontSize: 26,
+    fontFamily: "'Open Sans'",
     textAlign: "center",
     color: "white",
     marginTop: 30,
-    maxWidth: 300,
+    maxWidth: 300
   },
   overlay: {
     backgroundImage:
@@ -43,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: 145,
     display: "flex",
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "center"
   },
   buttonHeader: {
     display: "flex",
@@ -52,7 +54,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     bgcolor: "background.paper",
     minHeight: "100vh",
-    paddingTop: 23,
+    paddingTop: 23
   },
   accBtn: {
     width: 170,
@@ -62,7 +64,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#ffffff",
     color: "#3a8dff",
     boxShadow: "none",
-    marginRight: 35,
+    marginRight: 35
   },
   noAccBtn: {
     fontSize: 14,
@@ -70,13 +72,13 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 400,
     textAlign: "center",
     marginRight: 21,
-    whiteSpace: "nowrap",
+    whiteSpace: "nowrap"
   },
   image: {
     backgroundImage: "url(./images/bg-img.png)",
     backgroundRepeat: "no-repeat",
     backgroundSize: "cover",
-    backgroundPosition: "center",
+    backgroundPosition: "center"
   },
   box: {
     padding: 24,
@@ -86,11 +88,11 @@ const useStyles = makeStyles((theme) => ({
     minHeight: "100vh",
     flexDirection: "column",
     maxWidth: 900,
-    margin: "auto",
+    margin: "auto"
   },
   form: {
     width: "100%", // Fix IE 11 issue.
-    marginTop: theme.spacing(1),
+    marginTop: theme.spacing(1)
   },
   label: { fontSize: 19, color: "rgb(0,0,0,0.4)", paddingLeft: "5px" },
   submit: {
@@ -101,13 +103,13 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: 3,
     marginTop: 49,
     fontSize: 16,
-    fontWeight: "bold",
     backgroundColor: "#3a8dff",
+    fontWeight: "bold"
   },
   inputs: {
     marginTop: ".8rem",
     height: "2rem",
-    padding: "5px",
+    padding: "5px"
   },
   link: { textDecoration: "none", display: "flex", flexWrap: "nowrap" },
   forgot: {
