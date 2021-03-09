@@ -12,6 +12,7 @@ python-dotenv = "0.15"
 ipython = "*"
 psycopg2-binary = "2"
 flask-praetorian = "1"
+ipdb = "*"
 
 [requires]
 python_version = "3.7"
