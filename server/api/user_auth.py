@@ -85,8 +85,6 @@ def register_for_account():
 
         return resp
 
-        return jsonify(message), 201
-
     else:
         message = {"message": "Something went wrong"}
         return jsonify(message), 400
