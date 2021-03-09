@@ -1,6 +1,5 @@
 # NEEDS ATTENTION IN THE FUTURE: IMPLEMENT A MORE RIGOROUS CHECK FOR EMAIL VERIFICATION UPON REGISTRATION:
-
-from flask import jsonify, Blueprint, request
+from flask import jsonify, Blueprint, request, make_response
 from app_factory.flask_extensions import guard
 from models.user import User
 
@@ -25,9 +24,13 @@ def login():
     if user:
         message = {
             "message": f"Successfully logged into {user.username}'s account",
-            "token": guard.encode_jwt_token(user)
         }
-        return jsonify(message)
+
+        message_json = jsonify(message)
+        resp = make_response(message_json)
+        resp.set_cookie("auth", guard.encode_jwt_token(user), httponly=True)
+
+        return resp
 
     # If not, return an appropriate auth message. This code *shouldn't* run because
     # Praetorian's authenticate method should handle auth errors for you. However, I like
@@ -70,10 +73,18 @@ def register_for_account():
 
     # If successfully created, return a message and a JWT
     if new_user:
+
         message = {
             "message": f"Successfully created account for {new_user.username}",
-            "token": guard.encode_jwt_token(new_user)
+
         }
+
+        message_json = jsonify(message)
+        resp = make_response(message_json)
+        resp.set_cookie("auth", guard.encode_jwt_token(user), httponly=True)
+
+        return resp
+
         return jsonify(message), 201
 
     else:
