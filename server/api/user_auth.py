@@ -81,7 +81,7 @@ def register_for_account():
 
         message_json = jsonify(message)
         resp = make_response(message_json)
-        resp.set_cookie("auth", guard.encode_jwt_token(user), httponly=True)
+        resp.set_cookie("auth", guard.encode_jwt_token(new_user), httponly=True)
 
         return resp
 
