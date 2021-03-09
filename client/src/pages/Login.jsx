@@ -118,21 +118,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-// Login middleware placeholder
-function useLogin() {
-  const history = useHistory();
-
-  const login = async (email, password) => {
-    console.log(email, password);
-    const res = await fetch(
-      `/auth/login?email=${email}&password=${password}`
-    ).then((res) => res.json());
-    localStorage.setItem("user", res.user);
-    localStorage.setItem("token", res.token);
-    history.push("/dashboard");
-  };
-  return login;
-}
 
 export default function Login() {
   const classes = useStyles();
