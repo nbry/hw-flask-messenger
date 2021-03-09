@@ -25,6 +25,7 @@ server/secret.py
 # This was originally here, but I'm utilizing instance directory now:
 # instance/
 
+
 # PyCharm
 .idea/
 
