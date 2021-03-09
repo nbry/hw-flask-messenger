@@ -1,8 +1,73 @@
-# flask-starter
 
-## Starting the server:
+## Local Installation - Backend Instructions:
+
+1. **Clone the repository**
+
+	However, ensure you create a file in the root directory called `secret.py`
+
+	In `secret.py`, simply create a variable called `secret_key` and assign a secure
+	key to be used in development.
+
+	For example:
+
+	`secret_key = "ThisIsProbablyNotASafeKeyButIWillUseItAsAnExample`
+
+2. **Create a virtual environment and install dependencies with `pipenv`**
+
+	If you don't have pipenv:
+
+	`pip install pipenv`
+
+	Then:
+
+	`pipenv install `
+
+3. **Open PostgreSQL interactive terminal.**
+	The command may differ depending on your system settings.
+	Refer to PostgreSQL docs if you run into issues.
+
+	From my (limited) knowledge, it could be one of the following:
+	
+	`psql`
+	
+	or...
+	`psql -U postgres`
+	
+	or...
+	`psql -U postgres postgres`
+
+	There are implications behind each command. To better understand them, please refer to the PostgreSQL docs.
+
+	Once you have PostgreSQL open... 
+
+4. **Create the database:**
+
+	`CREATE DATABASE hw_messenger_db;`
+
+	For testing environment, create the following database:
+
+	`CREATE DATABASE hw_messenger_db_test;`
+
+5. **Exit PostgreSQL**
+
+6. **Seed the tables in the database.**
+
+	`pipenv run ipython`
+
+	`%run seed.py`
 
 
-1. Open a terminal and go to the server folder. Make sure you have **pipenv** installed (`pip install pipenv`)
-2. Install the dependencies with `pipenv install`. This also createa a virtual environment, if there isn't one already
-3. Activate the virtual environment and start the app with `pipenv run flask run`
+7. **Run flask server.** Your virtual environment should still be activated. If not, repeat step 4.
+
+	Run the following command in your Terminal:
+
+	`pipenv run flask run`
+
+	You can run flask in different environments. Refer to Flask docs for more info
+
+	You should see the server running on localhost:5000. You can now utilize the REST API. Try the following in your browser:
+
+	`localhost:5000/welcome`
+	You should receive the JSON message:
+
+	`{"welcomeMessage": "Welcome!"}`

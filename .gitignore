@@ -19,10 +19,11 @@ yarn-error.log*
 
 #python stuff
 __pycache__/
-instance/
 .webassets-cache
 server/venv/
-
+server/secret.py
+# This was originally here, but I'm utilizing instance directory now:
+# instance/
 
 # PyCharm
 .idea/
