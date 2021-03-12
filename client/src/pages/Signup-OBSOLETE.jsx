@@ -15,6 +15,10 @@ import * as Yup from "yup";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 
+// KEEP THIS COMPONENT HERE FOR NOW.
+// wE MAY NEED SOME OF THE BASE CODE FOR BACKEND INTEGRATION
+
+
 const useStyles = makeStyles(theme => ({
   root: {
     minHeight: "100vh",
