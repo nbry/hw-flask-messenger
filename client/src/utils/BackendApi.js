@@ -14,7 +14,6 @@ class BackendApi {
           method: verb,
           url: `${BASE_URL}/${endpoint}`,
           [verb === "get" ? "params" : "data"]: paramsOrData,
-          headers: { ...headers },
         })
       ).data;
     } catch (err) {
