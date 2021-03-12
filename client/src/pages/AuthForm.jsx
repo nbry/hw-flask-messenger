@@ -1,15 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Paper from "@material-ui/core/Paper";
 import Box from "@material-ui/core/Box";
-
 import { useHistory } from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
-
 import { makeStyles } from "@material-ui/core/styles";
-
 import AuthHeader from "../components/AuthScreen/AuthHeader";
-import AuthForm from "../components/AuthScreen/AuthForm";
+import AuthFormContent from "../components/AuthScreen/AuthFormContent";
 import SideBar from "../components/AuthScreen/SideBar";
 import AuthNotification from "../components/AuthScreen/AuthNotification";
 
@@ -118,19 +115,17 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-
-export default function Login() {
+export default function AuthForm() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
-
   const history = useHistory();
+  const isLoginForm = history.location.pathname === "/login";
 
-  React.useEffect(() => {
+  // CHECK IF LOGGED IN. IF YES, REDIRECT TO DASHBAORD
+  useEffect(() => {
     const user = localStorage.getItem("user");
     if (user) history.push("/dashboard");
   }, []);
-
-  const login = useLogin();
 
   const handleClose = (event, reason) => {
     if (reason === "clickaway") return;
@@ -145,9 +140,13 @@ export default function Login() {
 
       <Grid item xs={12} sm={8} md={7} elevation={6} component={Paper} square>
         <Box className={classes.buttonHeader}>
-          <AuthHeader classes={classes} />
+          <AuthHeader classes={classes} isLoginForm={isLoginForm} />
 
-          <AuthForm classes={classes} login={login} />
+          <AuthFormContent
+            classes={classes}
+            content={history.location.pathname}
+            isLoginForm={isLoginForm}
+          />
           <Box p={1} alignSelf="center" />
         </Box>
 

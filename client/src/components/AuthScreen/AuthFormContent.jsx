@@ -1,16 +1,17 @@
 import React from "react";
 import { Box, Button, Grid, TextField, Typography } from "@material-ui/core";
 import { Formik } from "formik";
+import BackendApi from "../../utils/BackendApi";
 import * as Yup from "yup";
 
-const AuthForm = ({ classes, login }) => {
+const AuthFormContent = ({ classes, isLoginForm }) => {
   return (
     <Box width="100%" maxWidth={450} p={3} alignSelf="center">
       <Grid container>
         <Grid item xs>
-          <p className={classes.welcome} component="h1" variant="h5">
-            Welcome back!
-          </p>
+          <Typography className={classes.welcome} component="h1" variant="h5">
+            {isLoginForm ? "Welcome Back!" : "Create an account"}
+          </Typography>
         </Grid>
       </Grid>
       <Formik
@@ -26,23 +27,57 @@ const AuthForm = ({ classes, login }) => {
             .required("Password is required")
             .max(100, "Password is too long")
             .min(6, "Password too short"),
+          username: isLoginForm
+            ? ""
+            : Yup.string()
+                .required("Username is required")
+                .max(40, "Username is too long"),
         })}
-        onSubmit={({ email, password }, { setStatus, setSubmitting }) => {
+        onSubmit={(
+          { username, email, password },
+          { setStatus, setSubmitting }
+        ) => {
           setStatus();
-          login(email, password).then(
-            () => {
-              // useHistory push to chat
-              console.log(email, password);
-              return;
-            },
-            (error) => {
-              setSubmitting(false);
-              setStatus(error);
+          // Handle form submission
+
+          async function submitAuthForm({ username, password, email }) {
+            try {
+              console.log(username, password, email);
+
+              const res = isLoginForm
+                ? await BackendApi.login({ username, password })
+                : await BackendApi.register({ username, password, email });
+            } catch (e) {
+              alert(e);
             }
-          );
+          }
+          submitAuthForm({ username, email, password });
         }}>
         {({ handleSubmit, handleChange, values, touched, errors }) => (
           <form onSubmit={handleSubmit} className={classes.form} noValidate>
+            {isLoginForm ? null : (
+              <TextField
+                id="username"
+                label={
+                  <Typography className={classes.label}>Username</Typography>
+                }
+                fullWidth
+                id="username"
+                margin="normal"
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                InputProps={{ classes: { input: classes.inputs } }}
+                name="username"
+                autoComplete="username"
+                autoFocus
+                helperText={touched.username ? errors.username : ""}
+                error={touched.username && Boolean(errors.username)}
+                value={values.username}
+                onChange={handleChange}
+              />
+            )}
+
             <TextField
               id="email"
               label={<p className={classes.label}>E-mail address</p>}
@@ -104,4 +139,4 @@ const AuthForm = ({ classes, login }) => {
   );
 };
 
-export default AuthForm;
+export default AuthFormContent;
