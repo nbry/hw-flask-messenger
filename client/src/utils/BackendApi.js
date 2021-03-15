@@ -17,7 +17,6 @@ class BackendApi {
         })
       ).data;
     } catch (err) {
-      // console.error("API Error:", err.response);
       let message = err.response.data.message;
       throw Array.isArray(message) ? message : [message];
     }
