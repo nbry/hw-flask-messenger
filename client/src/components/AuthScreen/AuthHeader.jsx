@@ -6,9 +6,9 @@ const AuthHeader = ({ classes, isLoginForm }) => {
   return (
     <Box p={1} alignSelf="flex-end" alignItems="center">
       <Link to={isLoginForm ? "/signup" : "/login"} className={classes.link}>
-        <Button className={classes.noAccBtn}>
+        <div className={classes.noAccBtn}>
           {isLoginForm ? "Don't have an account?" : "Already have an account?"}
-        </Button>
+        </div>
         <Button
           color="background"
           className={classes.accBtn}

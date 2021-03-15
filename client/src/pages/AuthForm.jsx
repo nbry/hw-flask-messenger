@@ -67,6 +67,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: 14,
     color: "#b0b0b0",
     fontWeight: 400,
+    marginTop: 15,
     textAlign: "center",
     marginRight: 21,
     whiteSpace: "nowrap",
