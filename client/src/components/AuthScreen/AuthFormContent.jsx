@@ -5,6 +5,16 @@ import BackendApi from "../../utils/BackendApi";
 import * as Yup from "yup";
 
 const AuthFormContent = ({ classes, isLoginForm }) => {
+  async function submitAuthForm({ username, password, email }) {
+    try {
+      const res = isLoginForm
+        ? await BackendApi.login({ username, password })
+        : await BackendApi.register({ username, password, email });
+    } catch (e) {
+      alert(e);
+    }
+  }
+
   return (
     <Box width="100%" maxWidth={450} p={3} alignSelf="center">
       <Grid container>
@@ -40,15 +50,6 @@ const AuthFormContent = ({ classes, isLoginForm }) => {
           setStatus();
           // Handle form submission
 
-          async function submitAuthForm({ username, password, email }) {
-            try {
-              const res = isLoginForm
-                ? await BackendApi.login({ username, password })
-                : await BackendApi.register({ username, password, email });
-            } catch (e) {
-              alert(e);
-            }
-          }
           submitAuthForm({ username, email, password });
         }}>
         {({ handleSubmit, handleChange, values, touched, errors }) => (
