@@ -120,12 +120,6 @@ export default function AuthForm() {
   const history = useHistory();
   const isLoginForm = history.location.pathname === "/login";
 
-  // CHECK IF LOGGED IN. IF YES, REDIRECT TO DASHBAORD
-  useEffect(() => {
-    const user = localStorage.getItem("user");
-    if (user) history.push("/dashboard");
-  }, [history]);
-
   const handleClose = (event, reason) => {
     if (reason === "clickaway") return;
     setOpen(false);
