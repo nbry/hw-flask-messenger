@@ -42,8 +42,6 @@ const AuthFormContent = ({ classes, isLoginForm }) => {
 
           async function submitAuthForm({ username, password, email }) {
             try {
-              console.log(username, password, email);
-
               const res = isLoginForm
                 ? await BackendApi.login({ username, password })
                 : await BackendApi.register({ username, password, email });
