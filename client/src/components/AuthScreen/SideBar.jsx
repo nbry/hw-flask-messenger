@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Grid, Hidden } from "@material-ui/core";
+import { Box, Grid, Hidden, Typography } from "@material-ui/core";
 
 const SideBar = ({ classes }) => {
   return (
@@ -8,9 +8,9 @@ const SideBar = ({ classes }) => {
         <Hidden xsDown>
           <img width={67} src="images/chatBubble.png" alt="chat-bubble" />
           <Hidden smDown>
-            <p className={classes.heroText}>
+            <Typography className={classes.heroText}>
               Converse with anyone with any language
-            </p>
+            </Typography>
           </Hidden>
         </Hidden>
       </Box>
