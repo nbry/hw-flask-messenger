@@ -3,8 +3,6 @@ import axios from "axios";
 class BackendApi {
   // Function to provide backbone for making HTTP requests to the Backend API
   static async request(endpoint, paramsOrData = {}, verb = "get") {
-    const BASE_URL = process.env.REACT_APP_BASE_URL || "http://127.0.0.1:5000";
-
     try {
       // axios sends query string data via the "params" key,
       // and request body data via the "data" key,
@@ -12,7 +10,7 @@ class BackendApi {
       return (
         await axios({
           method: verb,
-          url: `${BASE_URL}/${endpoint}`,
+          url: `/${endpoint}`,
           [verb === "get" ? "params" : "data"]: paramsOrData,
         })
       ).data;
