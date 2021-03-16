@@ -92,7 +92,6 @@ const useStyles = makeStyles((theme) => ({
   label: { fontSize: 19, color: "rgb(0,0,0,0.4)", paddingLeft: "5px" },
   submit: {
     margin: theme.spacing(3, 2, 2),
-    padding: 10,
     width: 160,
     height: 56,
     borderRadius: 3,
