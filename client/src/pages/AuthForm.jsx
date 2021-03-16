@@ -1,7 +1,6 @@
-import React, { useEffect } from "react";
+import React, { useState } from "react";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { Box, Paper, Grid } from "@material-ui/core/";
-import { useHistory } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import AuthHeader from "../components/AuthScreen/AuthHeader";
 import AuthFormContent from "../components/AuthScreen/AuthFormContent";
@@ -114,11 +113,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function AuthForm() {
+const AuthForm = ({ isLoginForm }) => {
   const classes = useStyles();
-  const [open, setOpen] = React.useState(true);
-  const history = useHistory();
-  const isLoginForm = history.location.pathname === "/login";
+  const [open, setOpen] = useState(true);
 
   const handleClose = (event, reason) => {
     if (reason === "clickaway") return;
@@ -135,11 +132,7 @@ export default function AuthForm() {
         <Box className={classes.buttonHeader}>
           <AuthHeader classes={classes} isLoginForm={isLoginForm} />
 
-          <AuthFormContent
-            classes={classes}
-            content={history.location.pathname}
-            isLoginForm={isLoginForm}
-          />
+          <AuthFormContent classes={classes} isLoginForm={isLoginForm} />
           <Box p={1} alignSelf="center" />
         </Box>
 
@@ -148,4 +141,6 @@ export default function AuthForm() {
       </Grid>
     </Grid>
   );
-}
+};
+
+export default AuthForm;
