@@ -7,11 +7,10 @@ const SideBar = ({ classes }) => {
       <Box className={classes.overlay}>
         <Hidden xsDown>
           <img width={67} src="images/chatBubble.png" alt="chat-bubble" />
-          <Hidden smDown>
-            <Typography className={classes.heroText}>
-              Converse with anyone with any language
-            </Typography>
-          </Hidden>
+
+          <Typography className={classes.heroText}>
+            Converse with anyone with any language
+          </Typography>
         </Hidden>
       </Box>
     </Grid>
