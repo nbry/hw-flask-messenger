@@ -10,7 +10,6 @@ const AuthHeader = ({ classes, isLoginForm }) => {
           {isLoginForm ? "Don't have an account?" : "Already have an account?"}
         </div>
         <Button
-          color="background"
           className={classes.accBtn}
           variant="contained">
           {isLoginForm ? "Create Account" : "Login"}
